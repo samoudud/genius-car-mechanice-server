@@ -6,7 +6,7 @@ const ObjectId = require('mongodb').ObjectId;
 const cors = require('cors');
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 // middleware
 app.use(cors());
@@ -24,8 +24,8 @@ async function run() {
 
         // GET API
         app.get('/services', async (req, res) => {
-            const coursor = servicesCollection.find({});
-            const services = await coursor.toArray();
+            const cursor = servicesCollection.find({});
+            const services = await cursor.toArray();
             res.send(services);
         })
 
